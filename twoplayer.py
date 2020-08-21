@@ -21,8 +21,9 @@ def play(n=1000, a=50, b=100, p=0.3):
             wealth -= 1
         vals.append(wealth)
     if count > 0:
+        print("Your wealth:", wealth)
         print(f"The game ended on trial {n - count}."
-              f" {'You' if wealth else 'We'} lost. Too bad.")
+              f" {'You' if wealth else 'We'} won. Too bad.")
         plt.plot([i for i in range(n - count + 1)], vals)
     else:
         print(f"Game did not end within {n} trials."
