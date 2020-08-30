@@ -24,11 +24,11 @@ def subparser():
     return parser
 
 
-def play(n=1000, a=50, b=100, p=0.3, double_down=False):
+def play(n=1000, a=50, b=100, p=0.5, double_down=False):
     count, wealth, vals, bet = n, a, [a], 1
     # generate list of values outside of loop to avoid calling rand multiple times
     wins = choices(population=[True, False], weights=[p, 1-p], k=n)
-    while 0 < wealth < a + b + 1 and count > 0:
+    while 0 < wealth < a + b and count > 0:
         count -= 1
         if wins[count]:
             wealth += bet
