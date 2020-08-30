@@ -23,6 +23,7 @@ def subparser():
                         help="double down bet on winning/losing")
     return parser
 
+
 def play(n=1000, a=50, b=100, p=0.3, double_down=False):
     count, wealth, vals, bet = n, a, [a], 1
     # generate list of values outside of loop to avoid calling rand multiple times
@@ -35,18 +36,22 @@ def play(n=1000, a=50, b=100, p=0.3, double_down=False):
             wealth -= bet
         bet *= 2 if double_down else bet
         vals.append(wealth)
-    if count > 0:
+    return True if count > 0 else False, wealth, n - count, vals
+
+
+def display_result(ended, wealth, end_trial, vals):
+    if ended:
         print("Your wealth:", wealth, "bottle caps.")
-        print(f"The game ended on trial {n - count}."
+        print(f"The game ended on trial {end_trial}."
               f" {'You' if wealth else 'We'} won. Too bad.")
-        plt.plot([i for i in range(n - count + 1)], vals)
     else:
-        print(f"Game did not end within {n} trials."
+        print(f"Game did not end within {end_trial} trials."
               f" You have {wealth} bottle caps")
-        plt.plot([i for i in range(n+1)], vals)
+    plt.plot([i for i in range(end_trial + 1)], vals)
     plt.show()
 
 
 if __name__ == '__main__':
     args = subparser().parse_args()
-    play(n=args.num, a=args.wealth, b=args.wealth * 2, p=args.probability, double_down=args.double_down)
+    result = play(n=args.num, a=args.wealth, b=args.wealth * 2, p=args.probability, double_down=args.double_down)
+    display_result(*result)
