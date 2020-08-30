@@ -36,18 +36,24 @@ def play(n=1000, a=50, b=100, p=0.3, double_down=False):
             wealth -= bet
         bet *= 2 if double_down else bet
         vals.append(wealth)
-    return True if count > 0 else False, wealth, n - count, vals
+    return True if count > 0 else False, n - count, vals
 
 
-def display_result(ended, wealth, end_trial, vals):
+def display_result(ended, end_trial, vals):
     if ended:
-        print("Your wealth:", wealth, "bottle caps.")
+        print("Your wealth:", vals[-1], "bottle caps.")
         print(f"The game ended on trial {end_trial}."
-              f" {'You' if wealth else 'We'} won. Too bad.")
+              f" {'You' if vals[-1] else 'We'} won. Too bad.")
     else:
         print(f"Game did not end within {end_trial} trials."
-              f" You have {wealth} bottle caps")
-    plt.plot([i for i in range(end_trial + 1)], vals)
+              f" You have {vals[-1]} bottle caps")
+    plt.plot([i for i in range(end_trial + 1)], vals, label="current wealth", )
+    avg_wealth = [vals[0] + float(sum(val - vals[0] for val in vals)) / len(vals)] * len(vals)
+    plt.plot([i for i in range(end_trial + 1)], avg_wealth, label="average wealth")
+    plt.title("two-player gambler's ruin")
+    plt.xlabel("turn index")
+    plt.ylabel("number of bottlecaps")
+    plt.legend()
     plt.show()
 
 
