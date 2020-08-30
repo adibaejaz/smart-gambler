@@ -1,10 +1,10 @@
 from twoplayer import play as two_play
 
 
-def game_stats(game, n=1000, a=50, b=100, p=0.51, double_down=False):
+def game_stats(game, m=1000, a=50, b=100, p=0.51, double_down=False):
     num_ended, num_won, pdoc = 0, 0, {}
     for x in range(50):
-        res = game(n, a, b, p, double_down)
+        res = game(m, a, b, p, double_down)
         if res[0]:
             num_ended += 1
             if res[-1][-1]:
