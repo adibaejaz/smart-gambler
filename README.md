@@ -23,14 +23,14 @@ PS Notes for the seminar and recordings of my talks are available upon request.
 ### Traditional 2-player set up 
 
 A gambler **G** starts with $ *i* and decides to stop playing after m rounds. The gambler's opponent, **O**, on the other 
-hand, has $f – when playing against the house, f is usually several times i.
+hand, has $f – when playing against the house, **f** is usually several times **i**.
 With each round, **G** either gains or loses a constant bet amount, usually $1, with fixed probabilities 
 p and 1-p respectively. **G** can also choose to 'double down', i.e. double the bet amount when **G** wins and halve it
 when **G**  loses.
-The game ends when either **G** or **O** has 0 dollars remaining.
+The game ends when either **G** or **O** has $0 remaining.
 
 ### My extensions
 * What happens when we generalize to n players?
-* What happens when the probability of success depends on the immediately previous outcome?
+* What happens when the probability of success depends on the immediately preceding outcome?
 
 
